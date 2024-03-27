@@ -3,14 +3,6 @@
   "description": "This incident type refers to an alert triggered due to high request duration on CoreDNS, which is a DNS server that translates domain names to IP addresses. The alert indicates that the request duration process for CoreDNS is high, meaning that it is taking longer than expected to process DNS requests. This can cause delays or failures in the resolution of domain names, leading to potential service disruptions or outages.",
   "params": [
     {
-      "name": "DEPLOYMENT_NAME",
-      "value": ""
-    },
-    {
-      "name": "SERVICE_NAME",
-      "value": ""
-    },
-    {
       "name": "MEMORY_LIMIT",
       "value": ""
     },
@@ -19,11 +11,11 @@
       "value": ""
     },
     {
-      "name": "CPU_REQUEST",
+      "name": "MEMORY_REQUEST",
       "value": ""
     },
     {
-      "name": "MEMORY_REQUEST",
+      "name": "CPU_REQUEST",
       "value": ""
     },
     {
@@ -32,6 +24,14 @@
     },
     {
       "name": "CPU_LIMIT",
+      "value": ""
+    },
+    {
+      "name": "DEPLOYMENT_NAME",
+      "value": ""
+    },
+    {
+      "name": "SERVICE_NAME",
       "value": ""
     },
     {
@@ -164,7 +164,7 @@
       "name": "cell_21",
       "type": "OP_LANG",
       "enabled": true,
-      "content": "pod | k8s_cluster_name=$K8S_CLUSTER_NAME | app='shoreline' | limit=1 | random=1 | `kubectl set resources deployment <deployment-name> --limits=<resource-limits>`"
+      "content": "pod | k8s_cluster_name=$K8S_CLUSTER_NAME | app='shoreline' | limit=1 | random=1 | `kubectl set resources deployment ${DEPLOYMENT_NAME} --limits=<resource-limits>`"
     }
   ]
 }
